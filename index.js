@@ -1,29 +1,13 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const morgan = require('morgan')
 const app = express()
 
+const Person = require('./models/person')
+
 const PORT = process.env.PORT || 3000
-
-const url = `mongodb+srv://fullstack:<password>@cluster0.o1opl.mongodb.net/noteApp?retryWrites=true&w=majority`
-
-mongoose.connect(url)
-
-const personSchema = new mongoose.Schema({
-	name: String,
-	number: String,
-})
-
-personSchema.set('toJSON', {
-	transform: (document, returnedObject) => {
-	  returnedObject.id = returnedObject._id.toString()
-	  delete returnedObject._id
-	  delete returnedObject.__v
-	}
-  })
-
-const person = mongoose.model('Person', personSchema)
 
 persons = [
 	{
