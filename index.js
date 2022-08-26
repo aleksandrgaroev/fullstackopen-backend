@@ -80,11 +80,7 @@ app.post('/api/persons', (req, res, next) => {
 	})
 
 	person
-		.save({
-			new: true,
-			runValidators: true,
-			context: 'query',
-		})
+		.save()
 		.then((savedPerson) => {
 			res.json(savedPerson)
 		})
